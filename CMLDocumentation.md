@@ -76,3 +76,5 @@ XML-based language for orchestrating chatbots for use with GreenWatt VoiceBot.
 - contact_fname
 - contact_lname
 - contact_address
+- appt_date (defined if appt is enabled)
+- appt_time (defined if appt is enabled)
