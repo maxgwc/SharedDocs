@@ -1,0 +1,31 @@
+<cml>
+    <chatbot
+        initialText="Hey there ~{contact_fname}! This is Ashley from Greenwatt. I am calling to confirm your appointment at ~{appt_time} for ~{appt_date}. Does that still work for you?"
+        voicemail="Hey there ~{contact_fname}! This is Ashley from Greenwatt. I am calling to confirm your appointment at ~{appt_time} for ~{appt_date}. Let us know if you need to cancel."
+        appt="true" availability="7">
+        <if condition="~{cancelled}">
+            <ai_message
+                prompt="You are Ashley, an assistant at Greenwatt. The contact has cancelled their appointment. Help them schedule a time to reschedule their appointment." />
+            <appt_booking booked="booked" />
+            <if condition="~{booked}">
+                <add_tags tags="voice reschedule" />
+                <remove_tags tags="voice cancellation" />
+                <bool_var name="cancelled" value="false" />
+            </if>
+        </if>
+        <if condition="!~{cancelled}">
+            <ai_message
+                prompt="You are Ashley, an assistant at Greenwatt. The contact has an appointment at ~{appt_time} for ~{appt_date}. Confirm that the appointment still works for the contact, and offer to reschedule it if not." />
+            <infer
+                condition="The contact has asked to cancel the appointment or no longer available for it."
+                variable="cancel_intent" />
+            <if condition="~{cancel_intent}">
+                <appt_cancel cancelled="cancelled" />
+                <add_tags tags="voice cancellation" />
+            </if>
+        </if>
+    </chatbot>
+    <chatbot_init>
+        <bool_var name="cancelled" value="false" />
+    </chatbot_init>
+</cml>

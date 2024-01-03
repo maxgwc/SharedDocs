@@ -16,8 +16,7 @@ XML-based language for orchestrating chatbots for use with GreenWatt VoiceBot.
  ---
 - \<chatbot_data>
 	<\chatbot_data>
-	- Defines data before the chatbot begins.
-	- Only \<const> and \<var> statements are allowed.
+	- Defines data and performs operations before the chatbot begins.
 
 ## Control Flow
 - \<if condition=""> <\if>
