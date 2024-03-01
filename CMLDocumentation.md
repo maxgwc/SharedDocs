@@ -35,7 +35,7 @@ XML-based language for orchestrating chatbots for use with GreenWatt VoiceBot.
 	- If the extraction was successful, operations within the body are executed and can access the data through the named variable.
 	- Provide as much guidance within the data prompt as possible.
 ---
-- \<infer conditional="" var=''>
+- \<infer conditional="" variable=''>
 	- Evaluate the given plaintext conditional prompt.
 	- Place the boolean result in the named variable.
 
